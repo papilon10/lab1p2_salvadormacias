@@ -3,9 +3,13 @@
  */
 package www.lab1p2_salvadormacias;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -31,32 +35,38 @@ public class Lab1p2_salvadormacias {
                     String nombre = str.nextLine();
                     System.out.println("Ingrese el apellido: ");
                     String apellido = str.nextLine();
-                    System.out.print("Ingrese la fecha de nacimiento con el formato (yyyy-mm-dd): ");
+                    System.out.println("Ingrese la fecha de nacimiento en formato (dd/mm/yyyy):");
                     String fecha = str.nextLine();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    LocalDate fecha_nacimiento = LocalDate.parse(fecha, formatter);
+                    Date fecha2 = parse_f(fecha);
+                    if (fecha != null) {
+                       
+                    } else {
+                        System.out.println("la fecha fue ingresada en un formato incorrecto...");
+                    }
+
                     System.out.println("Ingrese su correo electronico: ");
                     String correo = str.nextLine();
+
                     System.out.println("Ingrese la contrasena: ");
                     String contrasena = str.nextLine();
-                    usuarios.add(new usuario());
-                    
-                    
+                    usuarios.add(new usuario(nombre, apellido, fecha2, correo, contrasena));
+
                 }//fin case 1
                 break;
+
                 case 2: {
                     for (Object x : usuarios) {
                         System.out.println(usuarios);
-                        
+
                     }
 
                 }//fin case 2
                 break;
                 case 3: {
                     for (Object x : usuarios) {
-                        
+
                         System.out.println(usuarios);
-                        
+
                     }
 
                 }//fin case 3
@@ -74,4 +84,18 @@ public class Lab1p2_salvadormacias {
         } while (opcion != 4);
 
     }//fin main
+
+    private static Date parse_f(String fecha) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+
+        try {
+            return sdf.parse(fecha);
+        } catch (ParseException e) {
+            // Si hay un error al parsear, se imprime la excepción (puedes manejarlo de otra manera si prefieres)
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }//fin clase
