@@ -9,13 +9,13 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-/**
- *
- * @author Apple
- */
+
 public class Lab1p2_salvadormacias {
 
     public static Scanner lea = new Scanner(System.in);
@@ -39,16 +39,39 @@ public class Lab1p2_salvadormacias {
                     String fecha = str.nextLine();
                     Date fecha2 = parse_f(fecha);
                     if (fecha != null) {
-                       
+
                     } else {
                         System.out.println("la fecha fue ingresada en un formato incorrecto...");
                     }
+                    Calendar hoy = Calendar.getInstance();
 
                     System.out.println("Ingrese su correo electronico: ");
                     String correo = str.nextLine();
+                    String correo_Regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+                    Pattern patron_correo = Pattern.compile(correo_Regex);
+                    Matcher emailMatcher = patron_correo.matcher(correo);
+                    String correo2 = correo;
+
+                    if (emailMatcher.matches()) {
+                        System.out.println("El formato ingresado para el correo es valido ");
+
+                    } else {
+                        System.out.println("El formato ingresado para el correo es invalido ");
+                    }
 
                     System.out.println("Ingrese la contrasena: ");
                     String contrasena = str.nextLine();
+                    String contra_Regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@!?<>%$])[A-Za-z\\d@!?<>%$]{8,}$";
+                    Pattern patron_contra = Pattern.compile(contra_Regex);
+                    Matcher passwordMatcher = patron_contra.matcher(contrasena);
+
+                    if (passwordMatcher.matches()) {
+                        String contra =contrasena;
+                        
+                    } else {
+                        System.out.println("la contrasena ingresada es invalida");
+                    }
+
                     usuarios.add(new usuario(nombre, apellido, fecha2, correo, contrasena));
 
                 }//fin case 1
@@ -73,6 +96,7 @@ public class Lab1p2_salvadormacias {
                 break;
 
                 case 4: {
+                    System.out.println("se abandonara el programa...");
 
                 }//fin case 4
                 break;
