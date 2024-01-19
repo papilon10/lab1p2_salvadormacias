@@ -15,7 +15,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class Lab1p2_salvadormacias {
 
     public static Scanner lea = new Scanner(System.in);
@@ -38,6 +37,7 @@ public class Lab1p2_salvadormacias {
                     System.out.println("Ingrese la fecha de nacimiento en formato (dd/mm/yyyy):");
                     String fecha = str.nextLine();
                     Date fecha2 = parse_f(fecha);
+
                     if (fecha != null) {
 
                     } else {
@@ -66,8 +66,8 @@ public class Lab1p2_salvadormacias {
                     Matcher passwordMatcher = patron_contra.matcher(contrasena);
 
                     if (passwordMatcher.matches()) {
-                        String contra =contrasena;
-                        
+                        String contra = contrasena;
+
                     } else {
                         System.out.println("la contrasena ingresada es invalida");
                     }
@@ -87,11 +87,9 @@ public class Lab1p2_salvadormacias {
                 break;
                 case 3: {
                     for (Object x : usuarios) {
-
                         System.out.println(usuarios);
 
                     }
-
                 }//fin case 3
                 break;
 
